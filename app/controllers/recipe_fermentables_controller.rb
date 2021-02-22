@@ -1,0 +1,2 @@
+class RecipeFermentablesController < ApplicationController
+end

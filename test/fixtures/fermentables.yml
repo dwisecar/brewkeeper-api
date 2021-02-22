@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  category_display: MyString
+  srm_id: 1
+  srm_precise: 1
+  moisture_content: 1
+  course_fine_difference: 1.5
+  dry_yield: 1
+  potential: 1.5
+  protein: 1.5
+
+two:
+  name: MyString
+  description: MyString
+  category_display: MyString
+  srm_id: 1
+  srm_precise: 1
+  moisture_content: 1
+  course_fine_difference: 1.5
+  dry_yield: 1
+  potential: 1.5
+  protein: 1.5

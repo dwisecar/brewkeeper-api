@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  yeast_type: MyString
+  attenuation_min: 1
+  attenuation_max: 1
+  ferment_temp_min: 1
+  ferment_temp_max: 1
+  alcohol_tolerance_min: 1
+  alcohol_tolerance_max: 1
+  supplier: MyString
+  yeast_format: MyString
+
+two:
+  name: MyString
+  description: MyString
+  yeast_type: MyString
+  attenuation_min: 1
+  attenuation_max: 1
+  ferment_temp_min: 1
+  ferment_temp_max: 1
+  alcohol_tolerance_min: 1
+  alcohol_tolerance_max: 1
+  supplier: MyString
+  yeast_format: MyString

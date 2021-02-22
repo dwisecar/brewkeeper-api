@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  short_name: MyString
+  description: MyString
+  ibu_min: MyString
+  ibu_max: MyString
+  abv_min: MyString
+  abv_max: MyString
+  srm_min: MyString
+  srm_max: MyString
+  og: MyString
+  fg_min: MyString
+  fg_max: MyString
+
+two:
+  name: MyString
+  short_name: MyString
+  description: MyString
+  ibu_min: MyString
+  ibu_max: MyString
+  abv_min: MyString
+  abv_max: MyString
+  srm_min: MyString
+  srm_max: MyString
+  og: MyString
+  fg_min: MyString
+  fg_max: MyString
