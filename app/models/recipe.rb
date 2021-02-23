@@ -11,27 +11,6 @@ class Recipe < ApplicationRecord
   has_many :recipe_styles
   has_many :styles, through: :recipe_styles
 
-  def index
-
-  end
-
-  def show
-
-  end
-
-  def create
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
-  end
-  
-  private
-
+  validates_presence_of [:name, :volume]
 
 end

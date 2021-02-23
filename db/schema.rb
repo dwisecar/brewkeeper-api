@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_032016) do
+ActiveRecord::Schema.define(version: 2021_02_23_224029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_032016) do
     t.bigint "fermentable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "amount"
     t.index ["fermentable_id"], name: "index_recipe_fermentables_on_fermentable_id"
     t.index ["recipe_id"], name: "index_recipe_fermentables_on_recipe_id"
   end
@@ -65,6 +66,9 @@ ActiveRecord::Schema.define(version: 2021_02_22_032016) do
     t.bigint "hop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "amount"
+    t.integer "addition_time"
+    t.boolean "boil_addition", default: true
     t.index ["hop_id"], name: "index_recipe_hops_on_hop_id"
     t.index ["recipe_id"], name: "index_recipe_hops_on_recipe_id"
   end
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_032016) do
     t.bigint "yeast_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "amount"
     t.index ["recipe_id"], name: "index_recipe_yeasts_on_recipe_id"
     t.index ["yeast_id"], name: "index_recipe_yeasts_on_yeast_id"
   end

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :recipies
+  has_many :recipes
   validates :username, uniqueness: { case_sensitive: false }
 end
