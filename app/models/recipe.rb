@@ -10,6 +10,8 @@ class Recipe < ApplicationRecord
   has_many :yeasts, through: :recipe_yeasts
   has_many :recipe_styles
   has_many :styles, through: :recipe_styles
+  has_many :reviews
+  has_many :ratings
 
   validates_presence_of [:name, :volume]
 
