@@ -15,4 +15,9 @@ class Recipe < ApplicationRecord
 
   validates_presence_of [:name, :volume]
 
+
+  def average_rating
+    '%.2f' % (self.ratings.map{|r| r.stars }.sum.to_f / self.ratings.length)
+  end
+
 end

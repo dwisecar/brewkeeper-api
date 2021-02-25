@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   resources :yeasts
   resources :hops
   resources :fermentables
+  resources :ratings
+  resources :reviews
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
