@@ -5,9 +5,9 @@ class RecipesController < ApplicationController
     recipes = Recipe.all
     render json: recipes.to_json(:include => {
       :styles => {:except => [:created_at, :updated_at]},
-      :fermentables => {:except => [:created_at, :updated_at]},
-      :hops => {:except => [:created_at, :updated_at]},
-      :yeasts => {:except => [:created_at, :updated_at]},
+      :recipe_fermentables => {:except => [:created_at, :updated_at]},
+      :recipe_hops => {:except => [:created_at, :updated_at]},
+      :recipe_yeasts => {:except => [:created_at, :updated_at]},
       :reviews => {:include => {
           :user => {:only => [:id, :username]},
       }},
@@ -21,14 +21,23 @@ class RecipesController < ApplicationController
     recipe = Recipe.find_by(id: params[:id])
     render json: recipe.to_json(:include => {
       :styles => {:except => [:created_at, :updated_at]},
+      :recipe_fermentables => {:except => [:created_at, :updated_at]},
+      :recipe_hops => {:except => [:created_at, :updated_at]},
+      :recipe_yeasts => {:except => [:created_at, :updated_at]},
       :fermentables => {:except => [:created_at, :updated_at]},
       :hops => {:except => [:created_at, :updated_at]},
-      :yeasts => {:except => [:created_at, :updated_at]}
+      :yeasts => {:except => [:created_at, :updated_at]},
+      :reviews => {:include => {
+          :user => {:only => [:id, :username]},
+      }},
+      :ratings => {:except => [:created_at, :updated_at]},
+      :user => {:except => [:password_digest, :created_at, :updated_at]}
     },
       :except => [:created_at, :updated_at])
   end
 
-  def create
+  def create  
+    
     recipe = Recipe.create(recipe_params)
     RecipeStyle.create(recipe_id: recipe.id, style_id: params["style"]["id"])
     params["fermentables"].each {|f| RecipeFermentable.create(recipe_id: recipe.id, fermentable_id: f["id"], amount: f["amount"].to_f)}
@@ -37,18 +46,21 @@ class RecipesController < ApplicationController
     render json: recipe 
   end
 
-  def update
-
-  end
 
   def destroy
-
+    recipe = Recipe.find_by(id: params[:id])
+    recipe.destroy
   end
   
   private
 
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :volume, :instructions, :notes)
+    params.require(:recipe).permit(
+      :user_id, 
+      :name, 
+      :volume, 
+      :instructions, 
+      :notes)
   end
 
 end

@@ -2,14 +2,21 @@ class ReviewsController < ApplicationController
   skip_before_action :authorized
 
   def create
-    join = {
-      recipe_id: params["recipe_id"],
-      user_id: params["user_id"],
-      content: params["content"]
-    }
-    review = Review.create(join)
+    review = Review.create(review_params)
     if review.valid?
-      render json: review
+      render json: review.to_json(:include => {
+        :user => {:only => [:id, :username]}})
+    else
+      render json: { message: "Review cannot be blank"}, status: :unauthorized
+    end
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    if review.valid?
+      render json: review.to_json(:include => {
+        :user => {:only => [:id, :username]}})
     else
       render json: { message: "Review cannot be blank"}, status: :unauthorized
     end
@@ -19,6 +26,12 @@ class ReviewsController < ApplicationController
 
     review = Review.find_by(id: params[:id])
     review.destroy
+  end
+
+  private
+
+  def review_params
+    params.require(:review).permit(:user_id, :recipe_id, :content)
   end
 
 end
