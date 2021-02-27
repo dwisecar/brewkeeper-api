@@ -5,14 +5,20 @@ class RecipesController < ApplicationController
     recipes = Recipe.all
     render json: recipes.to_json(:include => {
       :styles => {:except => [:created_at, :updated_at]},
-      :recipe_fermentables => {:except => [:created_at, :updated_at]},
-      :recipe_hops => {:except => [:created_at, :updated_at]},
-      :recipe_yeasts => {:except => [:created_at, :updated_at]},
       :reviews => {:include => {
           :user => {:only => [:id, :username]},
       }},
+      :recipe_fermentables => {:include => {
+          :fermentable => {:except => [:created_at, :updated_at]},
+      }},
+      :recipe_hops => {:include => {
+          :hop => {:except => [:created_at, :updated_at]},
+      }},
+      :recipe_yeasts => {:include => {
+          :yeast => {:except => [:created_at, :updated_at]},
+      }},
       :ratings => {:except => [:created_at, :updated_at]},
-      :user => {:except => [:password_digest, :created_at, :updated_at]}
+      :user => {:only => [:id, :username]}
     },
       :except => [:created_at, :updated_at])
   end
@@ -21,19 +27,23 @@ class RecipesController < ApplicationController
     recipe = Recipe.find_by(id: params[:id])
     render json: recipe.to_json(:include => {
       :styles => {:except => [:created_at, :updated_at]},
-      :recipe_fermentables => {:except => [:created_at, :updated_at]},
-      :recipe_hops => {:except => [:created_at, :updated_at]},
-      :recipe_yeasts => {:except => [:created_at, :updated_at]},
-      :fermentables => {:except => [:created_at, :updated_at]},
-      :hops => {:except => [:created_at, :updated_at]},
-      :yeasts => {:except => [:created_at, :updated_at]},
       :reviews => {:include => {
           :user => {:only => [:id, :username]},
       }},
+      :recipe_fermentables => {:include => {
+          :fermentable => {:except => [:created_at, :updated_at]},
+      }},
+      :recipe_hops => {:include => {
+          :hop => {:except => [:created_at, :updated_at]},
+      }},
+      :recipe_yeasts => {:include => {
+          :yeast => {:except => [:created_at, :updated_at]},
+      }},
       :ratings => {:except => [:created_at, :updated_at]},
-      :user => {:except => [:password_digest, :created_at, :updated_at]}
+      :user => {:only => [:id, :username]}
     },
-      :except => [:created_at, :updated_at])
+      :except => [:created_at, :updated_at],
+      :methods => [:original_gravity, :final_gravity, :abv, :ibu, :srm, :average_rating])
   end
 
   def create  

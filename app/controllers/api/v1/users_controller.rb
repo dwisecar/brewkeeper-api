@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
 
   def update 
     user = User.find(params[:user_id])
-    user.update(username: params[:username])
+    user.update(user_params)
   end
 
   def profile
@@ -29,6 +29,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password)
+    params.permit(:username, :password, :bio, :avatar)
   end
 end 
