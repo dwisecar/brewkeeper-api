@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   post '/signin', to: 'users#signin'
   namespace :api do
     namespace :v1 do
-      patch '/editname', to: 'users#update'
+      patch '/edit', to: 'users#update'
       post '/signup', to: 'users#create'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
