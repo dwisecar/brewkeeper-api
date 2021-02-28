@@ -6,10 +6,13 @@ Rails.application.routes.draw do
       post '/signup', to: 'users#create'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
+      get '/brewers', to: 'users#index'
+      get '/brewers/:id', to: 'users#show'
       get '/persist', to: 'auth#show'
     end
   end
   
+
   resources :recipe_styles
   resources :recipe_yeasts
   resources :recipe_hops
