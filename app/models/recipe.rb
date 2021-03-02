@@ -18,8 +18,14 @@ class Recipe < ApplicationRecord
   validates_presence_of [:name, :volume]
 
 
+
   def average_rating
-    '%.2f' % (self.ratings.map{|r| r.stars }.sum.to_f / self.ratings.length)
+    if self.ratings.empty?
+      rating = 0
+    else
+      rating = '%.2f' % (self.ratings.map{|r| r.stars }.sum.to_f / self.ratings.length)
+    end
+    rating.to_f
   end
 
   def original_gravity

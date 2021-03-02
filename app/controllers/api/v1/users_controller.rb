@@ -1,6 +1,11 @@
 class Api::V1::UsersController < ApplicationController
   
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :index, :show]
+  
+  def index
+    users = User.all
+    render json: users
+  end
   
   def show
     user = User.find(params[:id])
@@ -18,8 +23,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update 
-    user = User.find(params[:user_id])
+    user = User.find_by(id: params[:id])
     user.update(user_params)
+    if user.valid?
+      render json: user
+    else
+      render json: { error: 'failed to create user' }, status: :not_acceptable
+    end
   end
 
   def profile
