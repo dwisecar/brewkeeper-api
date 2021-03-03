@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
       token = encode_token({ user_id: user.id })
       render json: { user: UserSerializer.new(user), jwt: token }, status: :created
     else    
-      render json: { error: 'failed to create user' }, status: :not_acceptable
+      render json: { error: user.errors.full_messages }, status: :not_acceptable
     end
   end
 
@@ -26,9 +26,9 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(id: params[:id])
     user.update(user_params)
     if user.valid?
-      render json: user
+      render json: { user: UserSerializer.new(user), jwt: params[:token]}
     else
-      render json: { error: 'failed to create user' }, status: :not_acceptable
+      render json: { error: user.errors.full_messages }, status: :not_acceptable
     end
   end
 
