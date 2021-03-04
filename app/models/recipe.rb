@@ -30,7 +30,7 @@ class Recipe < ApplicationRecord
 
   def original_gravity
     total_potential = self.recipe_fermentables.sum {|f| f.amount.to_f * ((f.fermentable.potential.to_f * 1000) - 1000)}
-    efficiency = (total_potential * 0.75) * (self.recipe_yeasts.first.yeast.attenuation_min * 0.01)
+    efficiency = (total_potential * 0.9) * (self.recipe_yeasts.first.yeast.attenuation_min * 0.01)
     (((efficiency / self.volume) / 1000) + 1).round(3)
   end
 

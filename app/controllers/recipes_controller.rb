@@ -38,8 +38,7 @@ class RecipesController < ApplicationController
       :methods => [:original_gravity, :final_gravity, :abv, :ibu, :srm, :average_rating])
   end
 
-  def create  
-    
+  def create   
     recipe = Recipe.create(recipe_params)
     RecipeStyle.create(recipe_id: recipe.id, style_id: params["style"]["id"])
     params["fermentables"].each {|f| RecipeFermentable.create(recipe_id: recipe.id, fermentable_id: f["id"], amount: f["amount"].to_f)}
