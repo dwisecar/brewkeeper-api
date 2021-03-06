@@ -2,7 +2,7 @@ class StylesController < ApplicationController
   skip_before_action :authorized
 
   def index
-    styles = Style.all
+    styles = Style.all.sort
     render json: styles.to_json(:except => [:created_at, :updated_at])
   end
 
