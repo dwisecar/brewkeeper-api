@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   def index
     recipes = Recipe.all.reverse
     render json: recipes.to_json(:include => {
-      :styles => {:only => [:name, :image]},
+      :styles => {:only => [:id, :name, :image]},
       :recipe_fermentables => {:except => [:created_at, :updated_at]},
       :recipe_hops => {:except => [:created_at, :updated_at]},
       :recipe_yeasts => {:except => [:created_at, :updated_at]},
