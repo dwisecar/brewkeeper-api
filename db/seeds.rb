@@ -2,11 +2,6 @@ brewery_db = BreweryDB::Client.new do |config|
   config.api_key = '76f3c806d6a8023b8a0a8d1aad162299'
 end
 
-Style.all.destroy_all
-Fermentable.all.destroy_all
-Hop.all.destroy_all
-Yeast.all.destroy_all
-
 brewery_db.fermentables.all.each do |f|
   Fermentable.create(
     name: f.name,
@@ -78,29 +73,27 @@ i = 0
 Style.all.each do |s|
   s.image = images[i]
   s.save
-  i + 1
-end
-
-Fermentable.all.each do |f|
-  if !f.potential
-    f.potential = 1.036
-  end
-  if !f.srm_id
-    f.srm_id = 4
-  end
-  f.save
+  i += 1
 end
 
 f = Fermentable.all.find_by(name: "Two-Row Pale Malt")
 f.name = "2-Row Pale Malt"
 f.save
 
+srms = [2, 3, 26, 3, 4, 41, 23, 500, 20, 1, 50, 56, 120, 60, 2, 20, 60, 46, 41, 41, 60, 30, 40, 45, 60, 80, 5, 350, 41, 5, 1, 3, 20, 4, 9, 80, 20, 10, 4, 1, 3, 2, 2, 2, 41, 2, 2, 2, 2, 2, 2]
+n = 0
+Fermentable.all.sort_by{|f|f.name}.each do |f|
+  f.srm_id = srms[n]
+  f.save
+  n += 1
+end
+
 hop_aa = [13.0, 8.0, 14.0, 5.5, 5.5, 6.0, 6.5, 12.0, 11.0, 3.5, 4.0, 11.0, 3.3, 4.0, 5.0, 6.5, 15.0, 2.0, 4.8, 13.0, 14.0, 4.0, 4.1, 4.0, 3.5, 10.2, 3.0, 3.0, 6.0, 12.0, 7.0, 3.0, 4.0, 14.0, 15.5, 11.5, 6.0, 12.0, 8.0, 3.0, 12.0, 4.5, 3.0, 17.5, 4.0, 15.0, 4.0, 8.0, 8.0, 8.0, 8.0] 
 j = 0
 Hop.all.each do |h|
   h.alpha_acid_min = hop_aa[j]
   h.save
-  j + 1
+  j += 1
 end
 
 Yeast.all.each do |y|
