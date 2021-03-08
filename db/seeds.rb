@@ -95,3 +95,6 @@ def set_potentials
     end
   end
 end
+
+set_potentials
+set_images
