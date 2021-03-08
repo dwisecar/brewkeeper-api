@@ -85,6 +85,13 @@ end
 Fermentable.all.each do |f|
   if !f.potential
     f.potential = 1.036
-    f.save
   end
+  if !f.srm_id
+    f.srm_id = 4
+  end
+  f.save
 end
+
+f = Fermentable.all.find_by(name: "Two-Row Pale Malt")
+f.name = "2-Row Pale Malt"
+f.save
