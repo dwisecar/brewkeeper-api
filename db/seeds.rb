@@ -82,10 +82,6 @@ Style.all.each do |s|
   i + 1
 end
 
-two_row = Fermentable.find(47)
-two_row.name = "2-Row Pale Malt"
-two_row.save
-
 Fermentable.all.each do |f|
   if !f.potential
     f.potential = 1.036
