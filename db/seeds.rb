@@ -83,6 +83,9 @@ f.save
 srms = [2, 3, 26, 3, 4, 41, 23, 500, 20, 1, 50, 56, 120, 60, 2, 20, 60, 46, 41, 41, 60, 30, 40, 45, 60, 80, 5, 350, 41, 5, 1, 3, 20, 4, 9, 80, 20, 10, 4, 1, 3, 2, 2, 2, 41, 2, 2, 2, 2, 2, 2]
 n = 0
 Fermentable.all.sort_by{|f|f.name}.each do |f|
+  if !f.potential
+    f.potential = 1.036
+  end
   f.srm_id = srms[n]
   f.save
   n += 1
