@@ -55,6 +55,11 @@ class RecipesController < ApplicationController
       :except => [:updated_at])
   end
 
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
+    render json: recipe
+  end
 
   def destroy
     recipe = Recipe.find_by(id: params[:id])
