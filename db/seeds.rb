@@ -2,6 +2,11 @@ brewery_db = BreweryDB::Client.new do |config|
   config.api_key = '76f3c806d6a8023b8a0a8d1aad162299'
 end
 
+Style.all.destroy_all
+Fermentable.all.destroy_all
+Hop.all.destroy_all
+Yeast.all.destroy_all
+
 brewery_db.fermentables.all.each do |f|
   Fermentable.create(
     name: f.name,
@@ -66,4 +71,27 @@ brewery_db.styles.all.each do |s|
   fg_min: s.fg_min,
   fg_max: s.fg_max
   )
+end
+
+images = ["red-short", "red-short", "red-short", "pilsner", "pilsner", "stout", "pilsner", "red-short", "red-short", "red-short", "brown", "pale-ale", "red-short", "stout", "stout", "red-tall", "stout", "pale-tall", "pale-tall", "stout", "stout", "pale-ale", "pale-ale", "pale-ale", "red-tall", "red-short", "stout", "pilsner", "pilsner", "brown", "stout", "pilsner", "stout", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pilsner", "red-short", "red-short", "red-short", "pilsner", "brown", "pilsner", "brown", "pilsner", "pilsner", "pilsner", "pale-tall", "pilsner", "pilsner", "red-short", "red-short", "pilsner", "red-short", "red-short", "red-short", "red-short", "red-short", "stout", "red-short", "brown", "brown", "pilsner", "pilsner", "pilsner", "pilsner", "brown", "brown", "brown", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pale-ale", "pale-tall", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "brown", "brown", "brown", "brown", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "stout", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pale-ale", "pale-ale", "pale-ale", "red-short", "brown", "red-short", "stout", "pale-tall", "stout", "brown", "pilsner", "pilsner", "stout", "stout", "stout", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pale-ale", "red-short", "brown", "pale-tall", "pale-tall", "brown", "brown", "red-tall", "red-tall", "red-tall", "pilsner", "pilsner", "pilsner", "pale-ale", "pale-ale"]
+
+def set_images
+  i = 0
+  Style.all.each do |s|
+    s.image = images[i]
+    s.save
+    i + 1
+  end
+  two_row = Fermentable.find(47)
+  two_row.name = "2-Row Pale Malt"
+  two_row.save
+end
+
+def set_potentials
+  Fermentable.all.each do |f|
+    if !f.potential
+      f.potential = 1.036
+      f.save
+    end
+  end
 end
