@@ -73,8 +73,7 @@ brewery_db.styles.all.each do |s|
   )
 end
 
-images = ["red-short", "red-short", "red-short", "pilsner", "pilsner", "stout", "pilsner", "red-short", "red-short", "red-short", "brown", "pale-ale", "red-short", "stout", "stout", "red-tall", "stout", "pale-tall", "pale-tall", "stout", "stout", "pale-ale", "pale-ale", "pale-ale", "red-tall", "red-short", "stout", "pilsner", "pilsner", "brown", "stout", "pilsner", "stout", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pilsner", "red-short", "red-short", "red-short", "pilsner", "brown", "pilsner", "brown", "pilsner", "pilsner", "pilsner", "pale-tall", "pilsner", "pilsner", "red-short", "red-short", "pilsner", "red-short", "red-short", "red-short", "red-short", "red-short", "stout", "red-short", "brown", "brown", "pilsner", "pilsner", "pilsner", "pilsner", "brown", "brown", "brown", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pale-ale", "pale-tall", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "brown", "brown", "brown", "brown", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "stout", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pale-ale", "pale-ale", "pale-ale", "red-short", "brown", "red-short", "stout", "pale-tall", "stout", "brown", "pilsner", "pilsner", "stout", "stout", "stout", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pale-ale", "red-short", "brown", "pale-tall", "pale-tall", "brown", "brown", "red-tall", "red-tall", "red-tall", "pilsner", "pilsner", "pilsner", "pale-ale", "pale-ale"]
-
+images = ["pale-ale", "pale-ale", "red-short", "red-short", "red-short", "pilsner", "pilsner", "red-short", "red-short", "red-short", "red-short", "brown", "brown", "pale-ale", "red-short", "stout", "red-short", "stout", "stout", "stout", "stout", "red-tall", "stout", "stout", "pale-tall", "pale-tall", "pale-tall", "stout", "pale-ale", "pale-ale", "pale-ale", "red-tall", "red-short", "brown", "pilsner", "pilsner", "brown", "stout", "pilsner", "pilsner", "stout", "stout", "stout", "stout", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pilsner", "red-short", "red-short", "red-short", "brown", "pilsner", "pale-tall", "pale-tall", "brown", "pilsner", "pilsner", "pilsner", "pale-ale", "pilsner", "pilsner", "red-short", "red-short", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "red-short", "red-short", "pilsner", "red-short", "red-short", "red-short", "stout", "red-short", "red-short", "brown", "brown", "brown", "brown", "brown", "brown", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "red-tall", "pilsner", "stout", "pilsner", "pilsner", "pilsner", "pale-ale", "pale-tall", "pale-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "pale-tall", "brown", "brown", "brown", "brown", "brown", "brown", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "pale-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "pale-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "stout", "red-tall", "red-tall", "red-tall", "red-tall", "red-tall", "pale-tall", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pilsner", "pale-tall", "pale-ale", "pale-ale", "pale-ale", "pale-tall"] 
 i = 0
 Style.all.each do |s|
   s.image = images[i]
@@ -95,3 +94,21 @@ end
 f = Fermentable.all.find_by(name: "Two-Row Pale Malt")
 f.name = "2-Row Pale Malt"
 f.save
+
+hop_aa = [13.0, 8.0, 14.0, 5.5, 5.5, 6.0, 6.5, 12.0, 11.0, 3.5, 4.0, 11.0, 3.3, 4.0, 5.0, 6.5, 15.0, 2.0, 4.8, 13.0, 14.0, 4.0, 4.1, 4.0, 3.5, 10.2, 3.0, 3.0, 6.0, 12.0, 7.0, 3.0, 4.0, 14.0, 15.5, 11.5, 6.0, 12.0, 8.0, 3.0, 12.0, 4.5, 3.0, 17.5, 4.0, 15.0, 4.0, 8.0, 8.0, 8.0, 8.0] 
+j = 0
+Hop.all.each do |h|
+  h.alpha_acid_min = hop_aa[j]
+  h.save
+  j + 1
+end
+
+Yeast.all.each do |y|
+  if !y.attenuation_min
+    y.attenuation_min = 72
+  end
+  if !y.attenuation_max
+    y.attenuation_max = 75
+  end
+  y.save
+end
