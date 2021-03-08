@@ -91,7 +91,13 @@ def set_potentials
   Fermentable.all.each do |f|
     if !f.potential
       f.potential = 1.036
-      f.save
     end
+    if !f.srm_id
+      f.srm_id = 4
+    end
+    f.save
   end
 end
+
+set_images
+set_potentials
