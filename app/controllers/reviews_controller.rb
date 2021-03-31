@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authorized
+ 
 
   def create
     review = Review.create(review_params)
@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
       render json: review.to_json(:include => {
         :user => {:only => [:id, :username]}})
     else
-      render json: { message: "Review cannot be blank"}, status: :unauthorized
+      render json: { message: "Review cannot be blank"}, status: :not_acceptable
     end
   end
 
@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
       render json: review.to_json(:include => {
         :user => {:only => [:id, :username]}})
     else
-      render json: { message: "Review cannot be blank"}, status: :unauthorized
+      render json: { message: "Review cannot be blank"}, status: :not_acceptable
     end
   end
 
